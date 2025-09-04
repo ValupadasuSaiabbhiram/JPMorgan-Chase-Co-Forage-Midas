@@ -35,6 +35,16 @@ The system is built with **Spring Boot** for dependency injection and resource i
 > 1142725631254665682354316777216387420489  
 > ---end output ---
 
+---
+### ✅ Task Two
+- Integrated **Kafka** into Midas Core
+- Added `KafkaConfig` to configure Producer, Consumer, and Listener with **JSON serialization**
+- Implemented `TransactionListener` to consume messages from Kafka topic configured in `application.yml`
+- Verified Kafka listener using embedded Testcontainers Kafka setup
+- Successfully ran **TaskTwoTests** and captured the first four incoming transactions
+
+**First 4 Transaction Amounts:**
+> 122.86, 42.87, 161.79, 22.22
 
 ---
 
@@ -51,7 +61,15 @@ The system is built with **Spring Boot** for dependency injection and resource i
     ```bash
     ./mvnw clean test
     ```
-
+4. Run a specific task test
+    ```bash
+    #for task one
+    ./mvnw -Dtest=TaskOneTests test
+    ```
+    ```bash
+    #for task two
+    ./mvnw -Dtest=TaskTwoTests test
+    ```
 ## Author
 **Sai Abbhiram Valupadasu**  
 &nbsp;&nbsp;&nbsp;&nbsp;Independent Software Developer | Passionate about backend systems & data engineering  
