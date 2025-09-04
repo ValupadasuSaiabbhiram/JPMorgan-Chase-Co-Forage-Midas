@@ -65,6 +65,20 @@ The system is built with **Spring Boot** for dependency injection and resource i
 
 ---
 
+### ✅ Task Four
+- Integrated the **Incentive API** (local JAR on port 8080).
+- Added `IncentiveClient` using `RestTemplate`:
+  - POST `/incentive` with `Transaction`.
+  - Receive `Incentive { amount }`.
+- `TransactionService` now:
+  - Persists `TransactionRecord` with `incentive`.
+  - Deducts only the **amount** from sender.
+  - Adds **amount + incentive** to recipient.
+
+**Result:** Wilbur’s final balance **3592** (rounded down).
+
+
+
 ## How to Run
 
 1. Ensure **Java 17** and **Docker Desktop** are installed.
@@ -91,6 +105,12 @@ The system is built with **Spring Boot** for dependency injection and resource i
     #for task three
     ./mvnw -Dtest=TaskThreeTests test
     ```
+    ```bash
+    #for task four (run in two terminals)
+    ./mvnw -Dtest=TaskFourTests test
+
+    java -jar services/transaction-incentive-api.jar
+
 
 ## Author
 **Sai Abbhiram Valupadasu**  
