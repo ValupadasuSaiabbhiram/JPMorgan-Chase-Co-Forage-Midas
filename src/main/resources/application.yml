@@ -1,10 +1,18 @@
+server:
+  port: 33400   # used later by Task Five's /balance check
+
 spring:
-  kafka:
-    consumer:
-      group-id: midas-core
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring.json.trusted.packages: "*"
+  datasource:
+    url: jdbc:h2:mem:midasdb;DB_CLOSE_DELAY=-1;MODE=LEGACY
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update   # auto create/update tables for local dev/tests
+    open-in-view: false
+    show-sql: false
+
+# Topic already set in test resources; adding here for completeness or local runs
 general:
-  kafka-topic: ${GENERAL_KAFKA_TOPIC:test-topic}
+  kafka-topic: test-topic
