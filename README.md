@@ -48,6 +48,23 @@ The system is built with **Spring Boot** for dependency injection and resource i
 
 ---
 
+
+### ✅ Task Three
+- Integrated **H2 database** with Spring Data JPA
+- Created `TransactionRecord` entity with `@ManyToOne` mapping to `UserRecord`
+- Added `TransactionRepository` and `TransactionService` for persistence & validation
+- Updated `TransactionListener` to:
+  - Validate sender/recipient existence
+  - Ensure sufficient balance
+  - Persist valid transactions
+  - Update balances atomically
+- Verified with **TaskThreeTests**
+
+**Final Waldorf Balance (floored):**
+> 541
+
+---
+
 ## How to Run
 
 1. Ensure **Java 17** and **Docker Desktop** are installed.
@@ -70,6 +87,11 @@ The system is built with **Spring Boot** for dependency injection and resource i
     #for task two
     ./mvnw -Dtest=TaskTwoTests test
     ```
+    ```bash
+    #for task three
+    ./mvnw -Dtest=TaskThreeTests test
+    ```
+
 ## Author
 **Sai Abbhiram Valupadasu**  
 &nbsp;&nbsp;&nbsp;&nbsp;Independent Software Developer | Passionate about backend systems & data engineering  
