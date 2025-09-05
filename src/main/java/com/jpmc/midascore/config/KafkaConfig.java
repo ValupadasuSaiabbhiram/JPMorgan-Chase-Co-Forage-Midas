@@ -1,3 +1,4 @@
+src\main\java\com\jpmc\midascore\config\KafkaConfig.java
 package com.jpmc.midascore.config;
 
 import com.jpmc.midascore.foundation.Transaction;
@@ -65,5 +66,102 @@ public class KafkaConfig {
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(transactionConsumerFactory);
         return factory;
+    }
+}
+
+
+src\main\java\com\jpmc\midascore\entity\TransactionRecord.java
+package com.jpmc.midascore.entity;
+
+import jakarta.persistence.*;
+import java.time.Instant;
+
+@Entity
+public class TransactionRecord {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // Many transactions can reference the same user
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender_id")
+    private UserRecord sender;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipient_id")
+    private UserRecord recipient;
+
+    @Column(nullable = false)
+    private float amount;
+
+    @Column(nullable = false)
+    private float incentive = 0.0f;
+
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt = Instant.now();
+
+    protected TransactionRecord() {}
+
+    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount) {
+        this.sender = sender;
+        this.recipient = recipient;
+        this.amount = amount;
+    }
+     public float getIncentive() { return incentive; }
+    public void setIncentive(float incentive) { this.incentive = incentive; }
+    public Long getId() { return id; }
+    public UserRecord getSender() { return sender; }
+    public UserRecord getRecipient() { return recipient; }
+    public float getAmount() { return amount; }
+    public Instant getCreatedAt() { return createdAt; }
+}
+
+
+src\main\java\com\jpmc\midascore\entity\UserRecord.java
+package com.jpmc.midascore.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class UserRecord {
+
+    @Id
+    @GeneratedValue()
+    private long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private float balance;
+
+    protected UserRecord() {
+    }
+
+    public UserRecord(String name, float balance) {
+        this.name = name;
+        this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User[id=%d, name='%s', balance='%f'", id, name, balance);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 }
