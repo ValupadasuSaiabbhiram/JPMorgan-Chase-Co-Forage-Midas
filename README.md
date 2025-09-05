@@ -89,7 +89,7 @@ The system is built with **Spring Boot** for dependency injection and resource i
 - Verified with **TaskFiveTests**.
 
 **Output Snippet:**
-> ---begin output  
+> ---begin output---  
 > Balance {amount=0.0}  
 > Balance {amount=1326.98}  
 > Balance {amount=2567.52}  
