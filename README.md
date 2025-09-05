@@ -147,7 +147,7 @@ The system is built with **Spring Boot** for dependency injection and resource i
 
 - [JPMorgan Advanced Software Engineering Virtual Experience](./certificate/jpmorgan_advanced_software_engineering_job_simulation_completion_certificate.pdf)
 
-![JPMorgan Certificate](./certificates/jpmorgan_advanced_software_engineering.png)
+ ![JPMorgan Certificate](./certificate/jpmorgan_advanced_software_engineering_certificate.png)
 
 ## Author
 **Sai Abbhiram Valupadasu**  
